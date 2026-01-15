@@ -9,6 +9,7 @@ cotracker_checkpoint: co-tracker/checkpoints/scaled_online.pth
 task_name: null
 pixel_keys: null
 device: "cuda"
+use_gt_depth: false
 
 width: -1
 height: -1
