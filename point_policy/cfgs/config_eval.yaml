@@ -33,6 +33,7 @@ expert_dataset: ${dataloader.bc_dataset}
 
 # Load weights
 bc_weight: path/to/weight
+eval_batches: 100
 
 hydra:
   run:
