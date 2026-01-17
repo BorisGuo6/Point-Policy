@@ -68,6 +68,16 @@ Point labeling notes:
 - Keep point order consistent between `pixels1` and `pixels2` (point i in both views must match).
 - Pick stable, visible object features (edges/corners), avoid background and occluded spots.
 
+## Data Flow (Video to Model Input)
+
+Point Policy does not take raw video as input. The model consumes **key-point tracks** derived from human demonstrations:
+
+1) Collect human demos (RGB + robot state) using Franka-Teach.
+2) Label object points with `label_points.ipynb` to create `coordinates/<task>/...`.
+3) Preprocess demos to `.pkl` files under `data/franka_env/` (includes robot/object tracks).
+4) Training/evaluation loads point tracks from these `.pkl` files.
+5) Online inference (robot eval) uses DIFT + CoTracker to extract point tracks from live video and feeds them to the policy.
+
 ## DIFT Model
 
 Object-point tracking uses DIFT from the `dift` submodule. The default SD model is `Manojb/stable-diffusion-2-1-base` (Diffusers format).
